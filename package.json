@@ -1,0 +1,22 @@
+{
+	"name": "examen-final",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "angelrojasm <angelrojasm6@gmail.com>",
+	"license": "MIT",
+	"private": "true",
+	"workspaces": [
+		"packages/*"
+	],
+	"devDependencies": {
+		"concurrently": "^5.2.0"
+	},
+	"scripts": {
+		"dev:client": "yarn workspace @examen-final/client start",
+		"build:client": "yarn workspace @examen-final/client build",
+		"dev:server": "yarn workspace @examen-final/server dev",
+		"start:server": "yarn workspace @examen-final/server start",
+		"dev": "concurrently \"yarn dev:server\" \"yarn dev:client\"",
+		"start": "yarn build:client && yarn start:server"
+	}
+}
