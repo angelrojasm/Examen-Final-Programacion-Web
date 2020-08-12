@@ -3,12 +3,12 @@ const firebase = require('firebase');
 
 const database = firebase.database();
 
-exports.write = value => {
+exports.write = (table, id, info) => {
 	return new Promise((resolve, reject) => {
 		database
-			.ref('sample/')
+			.ref(`${table}/${id}`)
 			.set({
-				value,
+				info,
 			})
 			.then(() => {
 				return resolve('Added Succesfully');
@@ -19,10 +19,21 @@ exports.write = value => {
 	});
 };
 
-exports.read = () => {
+exports.read = (table, id) => {
 	return new Promise((resolve, reject) => {
 		database
-			.ref('sample')
+			.ref(`${table}/${id}`)
+			.once('value')
+			.then(function (snapshot) {
+				return resolve(snapshot.val().info);
+			});
+	});
+};
+
+exports.getAll = table => {
+	return new Promise((resolve, reject) => {
+		database
+			.ref(`${table}`)
 			.once('value')
 			.then(function (snapshot) {
 				return resolve(snapshot.val());
@@ -30,21 +41,21 @@ exports.read = () => {
 	});
 };
 
-exports.update = newVal => {
+exports.update = (table, id, data) => {
 	return new Promise((resolve, reject) => {
 		database
-			.ref('sample/')
-			.update({ key: newVal })
+			.ref(`${table}/${id}`)
+			.update({ data })
 			.then(() => {
 				return resolve('Updated Succesfully');
 			});
 	});
 };
 
-exports.delete = () => {
+exports.delete = (table, id) => {
 	return new Promise((resolve, reject) => {
 		database
-			.ref('sample/')
+			.ref(`${table}/${id}`)
 			.set(null)
 			.then(() => {
 				return resolve('Deleted Succesfully');

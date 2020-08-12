@@ -1,0 +1,9 @@
+#header {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 5%;
+}
+
+.contact-table {
+	margin-top: 10%;
+}

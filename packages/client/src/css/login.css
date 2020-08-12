@@ -1,0 +1,121 @@
+#login-component {
+	position: relative;
+	top: 20%;
+}
+
+#register-component {
+	position: relative;
+	top: 10%;
+}
+#login-header {
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+	top: 3%;
+}
+
+#register-header {
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+	top: 1%;
+}
+
+#login-form-container {
+	position: relative;
+	border-radius: 15px;
+	margin: 0 auto;
+	background-color: white;
+	width: 35%;
+	height: 90%;
+	box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+	overflow: auto;
+}
+
+#form-title {
+	text-align: center;
+	margin-top: 3%;
+}
+
+#register-form-container {
+	position: relative;
+	border-radius: 15px;
+	top: 2.5%;
+	margin: 0 auto;
+	background-color: white;
+	width: 35%;
+	height: 85%;
+	box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+	overflow: auto;
+}
+
+#register-component .form-group {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 8%;
+	width: 70%;
+	font-size: large;
+}
+
+#register-component .register-form-group {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 8%;
+	width: 70%;
+	font-size: large;
+}
+
+#register-component .btn {
+	margin-left: 35%;
+	width: 30%;
+	margin-top: 8%;
+	margin-bottom: 8%;
+}
+#register-component label {
+	font-weight: 500;
+}
+#login-component label {
+	font-weight: 500;
+}
+
+#login-component .form-group {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 8%;
+	width: 70%;
+	font-size: large;
+}
+
+#login-component .register-form-group {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 8%;
+	width: 70%;
+	font-size: large;
+}
+
+#login-component .btn {
+	margin-left: 35%;
+	width: 30%;
+	margin-top: 8%;
+	margin-bottom: 8%;
+}
+
+#sign-up-label {
+	margin: 0 auto;
+	margin-top: 3%;
+	font-size: 13.5px;
+
+	width: fit-content;
+}
+
+#sign-up-link {
+	display: inline-block;
+	cursor: pointer;
+	margin-left: 1%;
+	color: blue;
+}
+
+#sign-up-link:hover {
+	text-decoration: underline;
+}

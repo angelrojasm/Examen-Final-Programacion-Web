@@ -17,16 +17,21 @@ app.get('/hello', function (req, res) {
 	res.send('hello from Express!');
 });
 
-app.get('/read', async function (req, res) {
-	res.send(await database.read());
+app.get('/getUser', async function (req, res) {
+	res.send(await database.read(req.query.table, req.query.id));
 });
+
+app.get('/getAll', async function (req, res) {
+	res.send(await database.getAll(req.query.table));
+});
+
 app.post('/add', async function (req, res) {
-	res.send(await database.write(req.body.value));
+	res.send(await database.write(req.body.table, req.body.id, req.body.info));
 });
 app.put('/update', async function (req, res) {
-	res.send(await database.update(req.body.value));
+	res.send(await database.write(req.body.table, req.body.id, req.body.info));
 });
 app.delete('/delete', async function (req, res) {
-	res.send(await database.delete());
+	res.send(await database.delete(req.body.table, req.body.id));
 });
 module.exports = app;

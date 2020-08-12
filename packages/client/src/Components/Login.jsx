@@ -1,0 +1,81 @@
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import '../css/login.css';
+import axios from 'axios';
+const Login = props => {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const history = useHistory();
+
+	async function handleSubmit() {
+		let user = {
+			email: email,
+			password: password,
+		};
+		if (email === '') {
+			alert('Your email must not be empty!');
+		} else if (password === '') {
+			alert('Your password must not be empty!');
+		} else {
+			window.localStorage.setItem('user', 'hola');
+			window.location.reload();
+		}
+	}
+
+	return (
+		<div id='login-component'>
+			<div id='login-form-container'>
+				<h3 id='form-title'>Sign In</h3>
+				<div className='form-group'>
+					<label htmlFor='exampleInputEmail1'>Email address</label>
+					<input
+						type='email'
+						name='email'
+						className='form-control'
+						aria-describedby='emailHelp'
+						required
+						value={email}
+						onChange={e => {
+							e.preventDefault();
+							setEmail(e.target.value);
+						}}
+					/>
+					<small id='emailHelp' className='form-text text-muted'>
+						We'll never share your email with anyone else.
+					</small>
+				</div>
+				<div className='form-group'>
+					<label htmlFor='exampleInputPassword1'>Password</label>
+					<input
+						type='password'
+						className='form-control'
+						required
+						value={password}
+						onChange={e => {
+							e.preventDefault();
+							setPassword(e.target.value);
+						}}
+					/>
+				</div>
+				<p id='sign-up-label'>
+					Don't have an account?
+					<span
+						id='sign-up-link'
+						onClick={e => {
+							e.preventDefault();
+							props.toggle();
+						}}>
+						{' '}
+						Sign Up
+					</span>
+				</p>
+				<button className='btn btn-primary' onClick={handleSubmit}>
+					Sign in
+				</button>
+			</div>
+		</div>
+	);
+};
+
+export default Login;
