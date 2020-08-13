@@ -18,8 +18,22 @@ const Login = props => {
 		} else if (password === '') {
 			alert('Your password must not be empty!');
 		} else {
-			window.localStorage.setItem('user', 'hola');
-			window.location.reload();
+			try {
+				let req = await fetch(`/login?email=${email}&password=${password}`, {
+					method: 'POST',
+				});
+				let x = await req.json();
+				console.log(x);
+				if (x.result) {
+					window.localStorage.setItem('logged', `${email}`);
+					alert('Logged in Succesfully!');
+					window.location.reload();
+				} else {
+					alert('incorrect credentials');
+				}
+			} catch (error) {
+				alert('incorrect credentials');
+			}
 		}
 	}
 
@@ -28,22 +42,24 @@ const Login = props => {
 			<div id='login-form-container'>
 				<h3 id='form-title'>Sign In</h3>
 				<div className='form-group'>
-					<label htmlFor='exampleInputEmail1'>Email address</label>
-					<input
-						type='email'
-						name='email'
-						className='form-control'
-						aria-describedby='emailHelp'
-						required
-						value={email}
-						onChange={e => {
-							e.preventDefault();
-							setEmail(e.target.value);
-						}}
-					/>
-					<small id='emailHelp' className='form-text text-muted'>
-						We'll never share your email with anyone else.
-					</small>
+					<form>
+						<label htmlFor='exampleInputEmail1'>Email address</label>
+						<input
+							type='email'
+							name='email'
+							className='form-control'
+							aria-describedby='emailHelp'
+							required
+							value={email}
+							onChange={e => {
+								e.preventDefault();
+								setEmail(e.target.value);
+							}}
+						/>
+						<small id='emailHelp' className='form-text text-muted'>
+							We'll never share your email with anyone else.
+						</small>
+					</form>
 				</div>
 				<div className='form-group'>
 					<label htmlFor='exampleInputPassword1'>Password</label>

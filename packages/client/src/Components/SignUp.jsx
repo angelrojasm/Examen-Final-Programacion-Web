@@ -25,6 +25,22 @@ const SignUp = props => {
 			alert('Your email must not be empty!');
 		} else if (password === '') {
 			alert('Your password must not be empty!');
+		} else {
+			try {
+				let req = await fetch(`/signup?email=${email}&password=${password}`, {
+					method: 'POST',
+				});
+				let x = await req.json();
+				console.log(x);
+				if (x.result === email) {
+					alert('Signed Up Succesfully!');
+					window.localStorage.setItem('logged', `${email}`);
+					window.location.reload();
+				}
+			} catch (error) {
+				alert('Incorrect Format');
+				console.log(error);
+			}
 		}
 
 		/*setTimeout(() => {

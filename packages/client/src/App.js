@@ -9,7 +9,7 @@ function App() {
 	const [Key, setKey] = useState(false);
 
 	useEffect(() => {
-		if (window.localStorage.getItem('user')) {
+		if (window.localStorage.getItem('logged')) {
 			setIsLoggedIn(true);
 			setLoading(false);
 		} else {

@@ -21,6 +21,13 @@ const Home = props => {
 		setElemCount(0);
 	}, []);
 
+	async function logout(e) {
+		e.preventDefault();
+		let req = await fetch('/logout');
+		window.localStorage.clear();
+		alert('Logged out Succesfully!');
+		window.location.reload();
+	}
 	async function deleteEntry(e, id) {
 		let x = window.confirm('Are you sure you want to delete the entry?');
 		if (x) {
@@ -36,12 +43,13 @@ const Home = props => {
 		console.log(contacts.length);
 		console.log(contacts.children);
 		if (contacts.length === undefined) {
+			let x = Object.keys(contacts)[0];
 			return (
 				<tr className='table-body'>
 					<th scope='row'>1</th>
-					<td>{contacts.children.name}</td>
-					<td>{contacts.info.lastname}</td>
-					<td>{contacts.info.email}</td>
+					<td>{x.info.name}</td>
+					<td>{x.info.lastname}</td>
+					<td>{x.info.email}</td>
 					<td>
 						<Link
 							to={{
@@ -109,6 +117,13 @@ const Home = props => {
 					className='btn btn-success'>
 					Crear Contacto
 				</Link>
+				<button
+					className='btn btn-primary'
+					onClick={e => {
+						logout(e);
+					}}>
+					Logout
+				</button>
 			</div>
 			<div className='contact-table'>{<Contacts fill={fillTable} />}</div>
 		</div>
