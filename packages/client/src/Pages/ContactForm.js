@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/login.css';
+import '../css/ContactForm.css';
 import { Link, useHistory } from 'react-router-dom';
 
 const SignUp = props => {
@@ -14,33 +14,32 @@ const SignUp = props => {
 		setEmail('');
 	};
 	async function handleSubmit() {
-		let user = {
-			name: name,
-			email: email,
-			lastName: lastName,
-		};
 		if (name === '') {
 			alert('Your name must not be empty!');
 		} else if (email === '') {
 			alert('Your email must not be empty!');
 		} else if (lastName === '') {
 			alert('Your lastName must not be empty!');
+		} else {
+			await fetch(
+				`/add?table=contacts&id=${props.location.state.id}&name=${name}&email=${email}&lastname=${lastName}`,
+				{
+					method: 'POST',
+				}
+			);
+			alert('Contact Created!');
+			history.push('/');
 		}
-
-		/*setTimeout(() => {
-                history.push("/");
-            }, 1000);
-        }*/
 	}
 	return (
-		<div id='register-component'>
-			<div id='register-form-container'>
-				<h3 id='form-title'>Sign Up</h3>
-				<div className='register-form-group'>
-					<label htmlFor='Name'>What's your username?</label>
+		<div id='contact-component'>
+			<div id='contact-form-container'>
+				<h3 id='form-title'>Create Contact</h3>
+				<div className='contact-form-group'>
+					<label htmlFor='Name'>What's your first name?</label>
 					<input
 						type='text'
-						name='username'
+						name='First Name'
 						className='form-control'
 						aria-describedby='emailHelp'
 						required
@@ -51,7 +50,7 @@ const SignUp = props => {
 						}}
 					/>
 				</div>
-				<div className='register-form-group'>
+				<div className='contact-form-group'>
 					<label htmlFor='exampleInputEmail1'>Email address</label>
 					<input
 						type='email'
@@ -69,8 +68,8 @@ const SignUp = props => {
 						We'll never share your email with anyone else.
 					</small>
 				</div>
-				<div className='register-form-group'>
-					<label htmlFor='exampleInputlastName1'>lastName</label>
+				<div className='contact-form-group'>
+					<label htmlFor='exampleInputlastName1'>What's your Last Name?</label>
 					<input
 						type='lastName'
 						className='form-control'
@@ -82,21 +81,22 @@ const SignUp = props => {
 						}}
 					/>
 				</div>
-				<p id='sign-up-label'>
-					Already have an account?
-					<span
-						id='sign-up-link'
+				<div id='buttons'>
+					<Link to={{ pathname: '/' }} className='btn btn-warning'>
+						Cancel
+					</Link>
+					<button className='btn btn-primary' onClick={handleSubmit}>
+						Save
+					</button>
+					<button
+						className='btn btn-danger'
 						onClick={e => {
 							e.preventDefault();
-							props.toggle();
+							clear();
 						}}>
-						{' '}
-						Sign Up
-					</span>
-				</p>
-				<button className='btn btn-primary' onClick={handleSubmit}>
-					Sign up
-				</button>
+						Delete
+					</button>
+				</div>
 			</div>
 		</div>
 	);

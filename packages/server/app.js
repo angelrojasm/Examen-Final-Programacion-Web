@@ -26,12 +26,17 @@ app.get('/getAll', async function (req, res) {
 });
 
 app.post('/add', async function (req, res) {
-	res.send(await database.write(req.body.table, req.body.id, req.body.info));
+	let info = {
+		name: req.query.name,
+		lastname: req.query.lastname,
+		email: req.query.email,
+	};
+	res.send(await database.write(req.query.table, req.query.id, info));
 });
 app.put('/update', async function (req, res) {
 	res.send(await database.write(req.body.table, req.body.id, req.body.info));
 });
 app.delete('/delete', async function (req, res) {
-	res.send(await database.delete(req.body.table, req.body.id));
+	res.send(await database.delete(req.query.table, req.query.id));
 });
 module.exports = app;

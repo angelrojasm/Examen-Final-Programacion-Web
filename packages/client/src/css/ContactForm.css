@@ -1,0 +1,49 @@
+#contact-component {
+	position: relative;
+	top: 10%;
+}
+
+#contact-form-container {
+	position: relative;
+	border-radius: 15px;
+	margin: 0 auto;
+	background-color: white;
+	width: 70%;
+	height: 100%;
+
+	overflow: auto;
+}
+
+#form-title {
+	text-align: center;
+	margin-top: 3%;
+}
+
+#contact-component .form-group {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 8%;
+	width: 70%;
+	font-size: large;
+}
+
+#contact-component .contact-form-group {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 8%;
+	width: 70%;
+	font-size: large;
+}
+
+#contact-component label {
+	font-weight: 500;
+}
+
+#buttons .btn {
+	margin: 5% 3%;
+}
+#buttons {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
