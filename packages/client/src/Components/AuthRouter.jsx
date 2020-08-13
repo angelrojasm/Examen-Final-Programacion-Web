@@ -7,8 +7,8 @@ const AuthRouter = props => {
 		<Router>
 			<div className='auth-container'>
 				<Switch>
-					<Route path='/login' exact component={Auth} />
-					<Redirect to={'/login'} />
+					<Route path='/' exact component={Auth} />
+					<Redirect to={'/'} />
 				</Switch>
 			</div>
 		</Router>
