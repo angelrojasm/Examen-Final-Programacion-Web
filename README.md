@@ -2,6 +2,8 @@
 
 Sample Full Stack React - Nodejs project a cloud based DB using Firebase Real Time Database
 
+Click the following link to view the App in action: https://examen-final-web.herokuapp.com/
+
 ## Getting Started
 
 After cloning the repository into your machine, navigate to the root of the project and then run the following command:

@@ -5,7 +5,7 @@ const port = 3001;
 const database = require('./firebase/crud');
 app.use(express.json());
 app.use(cors());
-
+const auth = require('./firebase/auth');
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('../client/build'));
 }
@@ -15,6 +15,16 @@ app.listen(process.env.PORT || port, () => {
 
 app.get('/hello', function (req, res) {
 	res.send('hello from Express!');
+});
+
+app.post('/login', async function (req, res) {
+	res.send(await auth.login(req.query.email, req.query.password));
+});
+app.post('/signup', async function (req, res) {
+	res.send(await auth.signUp(req.query.email, req.query.password));
+});
+app.get('/logout', async function (req, res) {
+	res.send(await auth.logout());
 });
 
 app.get('/getUser', async function (req, res) {
